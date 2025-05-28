@@ -33,6 +33,22 @@
       }
     );
 
+    checks = forAllSystems (
+      system: let
+        pkgs = nixpkgsFor.${system};
+        package = self.packages.${system}.default;
+      in {
+        default =
+          pkgs.runCommand "zig-project-check" {
+            buildInputs = [pkgs.sqlite];
+          } ''
+            if sqlite3 -cmd ".load ${package}/lib/libuuidz" < ${./tests.sql} | tee $out | grep -E '^FAIL'; then
+              exit 1
+            fi
+          '';
+      }
+    );
+
     devShells = forAllSystems (
       system: let
         pkgs = nixpkgsFor.${system};

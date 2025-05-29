@@ -30,37 +30,37 @@ export fn sqlite3_uuidz_init(
 
     var result: c_int = 0;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v1", 0, c.SQLITE_UTF8, null, uuidV1Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v1", 0, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS, null, uuidV1Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v3", 2, c.SQLITE_UTF8, null, uuidV3Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v3", 2, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidV3Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v4", 0, c.SQLITE_UTF8, null, uuidV4Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v4", 0, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS, null, uuidV4Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v5", 2, c.SQLITE_UTF8, null, uuidV5Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v5", 2, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidV5Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v6", 0, c.SQLITE_UTF8, null, uuidV6Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v6", 0, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS, null, uuidV6Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_v7", 0, c.SQLITE_UTF8, null, uuidV7Func, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_v7", 0, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS, null, uuidV7Func, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_format", 1, c.SQLITE_UTF8 | c.SQLITE_DETERMINISTIC, null, uuidToTextFunc, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_format", 1, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidToTextFunc, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_parse", 1, c.SQLITE_UTF8 | c.SQLITE_DETERMINISTIC, null, uuidFromTextFunc, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_parse", 1, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidFromTextFunc, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_version", 1, c.SQLITE_UTF8 | c.SQLITE_DETERMINISTIC, null, uuidVersionFunc, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_version", 1, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidVersionFunc, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_variant", 1, c.SQLITE_UTF8 | c.SQLITE_DETERMINISTIC, null, uuidVariantFunc, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_variant", 1, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidVariantFunc, null, null);
     if (result != c.SQLITE_OK) return result;
 
-    result = sqlite3_api.create_function.?(db, "uuid_timestamp", 1, c.SQLITE_UTF8 | c.SQLITE_DETERMINISTIC, null, uuidTimestampFunc, null, null);
+    result = sqlite3_api.create_function.?(db, "uuid_timestamp", 1, c.SQLITE_UTF8 | c.SQLITE_INNOCUOUS | c.SQLITE_DETERMINISTIC, null, uuidTimestampFunc, null, null);
     if (result != c.SQLITE_OK) return result;
 
     return c.SQLITE_OK;

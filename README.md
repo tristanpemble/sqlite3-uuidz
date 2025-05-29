@@ -49,6 +49,17 @@ SELECT uuid_timestamp(uuid_v7());
 SELECT datetime(uuid_timestamp(uuid_v7()), 'unixepoch');
 ```
 
+Or, to demonstrate a couple of usecases:
+
+```sqlite
+CREATE TABLE users (
+    id          BLOB PRIMARY KEY DEFAULT (uuid_v7()),
+    display_id  TEXT GENERATED ALWAYS AS (uuid_format(id)) VIRTUAL,
+    name        TEXT,
+    CHECK (uuid_version(id) == 7)
+);
+```
+
 ## License
 
 MIT
